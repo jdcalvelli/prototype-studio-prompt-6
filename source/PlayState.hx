@@ -98,7 +98,7 @@ class PlayState extends FlxState
 			FlxTween.tween(ruminationText, {
 				y: 180,
 				alpha: 0,
-			}, new FlxRandom().int(2, 4), {
+			}, new FlxRandom().int(3, 5), {
 				type: FlxTweenType.ONESHOT,
 				ease: FlxEase.sineInOut,
 				onStart: (?_) ->
