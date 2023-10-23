@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.effects.particles.FlxEmitter;
@@ -18,7 +19,7 @@ class PlayState extends FlxState
 
 	var rainParticles:FlxEmitter = new FlxEmitter(0, 0);
 
-	var cigParticles:FlxEmitter = new FlxEmitter(228, 273);
+	var cigParticles:FlxEmitter = new FlxEmitter(233, 273);
 
 	var cigSFX:FlxSound = new FlxSound().loadStream(AssetPaths.cig__wav, true);
 	var rainSFX:FlxSound = new FlxSound().loadStream(AssetPaths.rain__wav, true);
@@ -26,6 +27,9 @@ class PlayState extends FlxState
 	override public function create()
 	{
 		super.create();
+
+		// use system mouse
+		FlxG.mouse.useSystemCursor = true;
 
 		// rain particles
 		rainParticles.makeParticles(2, 6, 0xFF6f9edf, 1000);
