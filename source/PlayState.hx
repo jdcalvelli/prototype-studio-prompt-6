@@ -5,7 +5,11 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.effects.particles.FlxEmitter;
 import flixel.effects.particles.FlxParticle;
+import flixel.math.FlxRandom;
 import flixel.sound.FlxSound;
+import flixel.text.FlxText;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 
 class PlayState extends FlxState
@@ -21,8 +25,21 @@ class PlayState extends FlxState
 
 	var cigParticles:FlxEmitter = new FlxEmitter(233, 273);
 
+	var ruminationText:FlxText = new FlxText(400, 220, 124, "", 8);
+	var textIsTweening:Bool = false;
+
 	var cigSFX:FlxSound = new FlxSound().loadStream(AssetPaths.cig__wav, true);
 	var rainSFX:FlxSound = new FlxSound().loadStream(AssetPaths.rain__wav, true);
+
+	var sadArray = [
+		"how one encounters reality is a choice",
+		"everyone is the other and no one is himself",
+		"nothing is everything that doesn't happen at this very moment",
+		"longing is the agony of the nearness of the distant",
+		"why are there beings at all, instead of nothing?",
+		"we ourselves are the entities to be analyzed",
+		"what is most worthy of reverence lights up only where the magnificent strength to revere is alive"
+	];
 
 	override public function create()
 	{
@@ -49,6 +66,9 @@ class PlayState extends FlxState
 		cigParticles.alpha.set(1, 1, 0, 0);
 		cigParticles.angularVelocity.set(90, 90);
 
+		// rumination text
+		ruminationText.color = 0xFF000000;
+
 		// adding objects
 
 		add(objectDict["background"]);
@@ -57,6 +77,7 @@ class PlayState extends FlxState
 		add(objectDict["char"]);
 		add(objectDict["cig"]);
 		add(cigParticles);
+		add(ruminationText);
 
 		// starting stuff
 		rainParticles.start(false, 0.01, 0);
@@ -70,5 +91,28 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		if (FlxG.keys.justPressed.SPACE && !textIsTweening)
+		{
+			ruminationText.text = new FlxRandom().getObject(sadArray);
+			FlxTween.tween(ruminationText, {
+				y: 180,
+				alpha: 0,
+			}, new FlxRandom().int(2, 4), {
+				type: FlxTweenType.ONESHOT,
+				ease: FlxEase.sineInOut,
+				onStart: (?_) ->
+				{
+					textIsTweening = true;
+				},
+				onComplete: (?_) ->
+				{
+					ruminationText.y = 220;
+					ruminationText.text = "";
+					ruminationText.alpha = 1;
+					textIsTweening = false;
+				}
+			});
+		}
 	}
 }
