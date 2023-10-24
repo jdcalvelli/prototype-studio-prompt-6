@@ -4,7 +4,6 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.effects.particles.FlxEmitter;
-import flixel.effects.particles.FlxParticle;
 import flixel.math.FlxRandom;
 import flixel.sound.FlxSound;
 import flixel.text.FlxText;
@@ -32,13 +31,18 @@ class PlayState extends FlxState
 	var rainSFX:FlxSound = new FlxSound().loadStream(AssetPaths.rain__wav, true);
 
 	var sadArray = [
-		"how one encounters reality is a choice",
-		"everyone is the other and no one is himself",
-		"nothing is everything that doesn't happen at this very moment",
-		"longing is the agony of the nearness of the distant",
-		"why are there beings at all, instead of nothing?",
-		"we ourselves are the entities to be analyzed",
-		"what is most worthy of reverence lights up only where the magnificent strength to revere is alive"
+		"the thing is to find a truth which is true for me, to find the idea for which I can live and die",
+		"human relations are like the irregular verbs in a number of languages where nearly all verbs are irregular",
+		"It belongs to the imperfection of everything human that man can only attain his desire by passing through its opposite",
+		"Deep within every human being there still lives the anxiety over the possibility of being alone in the world",
+		"life can only be understood backwards; but it must be lived forwards",
+		"since my earliest childhood a barb of sorrow has lodged in my heart. as long as it stays I am ironic — if it is pulled out I shall die",
+		"it is the duty of the human understanding to understand that there are things which it cannot understand, and what those things are",
+		"most men pursue pleasure with such breathless haste that they hurry past it",
+		"the question is asked in ignorance, by one who does not even know what can have led him to ask it",
+		"anxiety and nothing always correspond to each other",
+		"you cannot get the truth by capturing it, only by its capturing you",
+		"modern day yule log\na prototype by jd calvelli"
 	];
 
 	override public function create()
